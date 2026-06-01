@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SpaceTech Portfolio</title>
+    <style>
+      /* --- Reset & Core Styles --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      :root {
+        --bg-color: #03030c;
+        --text-color: #ffffff;
+        --text-muted: #8a99ad;
+        --accent-color: #00f2fe; /* Starlink Electric Blue */
+        --accent-glow: rgba(0, 242, 254, 0.4);
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-border: rgba(255, 255, 255, 0.08);
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      /* --- Background Canvas --- */
+      #starlink-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+      }
+
+      /* --- Navigation --- */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 100;
+        background: linear-gradient(
+          to bottom,
+          rgba(3, 3, 12, 0.8),
+          transparent
+        );
+        backdrop-filter: blur(5px);
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-color);
+        text-decoration: none;
+      }
+
+      .logo span {
+        color: var(--accent-color);
+        text-shadow: 0 0 10px var(--accent-glow);
+      }
+
+      nav a {
+        color: var(--text-muted);
+        text-decoration: none;
+        margin-left: 2rem;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+        transition: color 0.3s, text-shadow 0.3s;
+      }
+
+      nav a:hover {
+        color: var(--accent-color);
+        text-shadow: 0 0 8px var(--accent-glow);
+      }
+
+      /* --- Layout Sections --- */
+      section {
+        min-height: 100vh;
+        padding: 8rem 10% 4rem 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* --- Hero Section --- */
+      .hero {
+        align-items: flex-start;
+      }
+
+      .hero h1 {
+        font-size: 4rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        letter-spacing: -1px;
+      }
+
+      .hero h1 span {
+        background: linear-gradient(45deg, #00f2fe, #4facfe);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin-bottom: 2.5rem;
+        line-height: 1.6;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        border: 1px solid var(--accent-color);
+        background: transparent;
+        color: var(--text-color);
+        font-weight: 600;
+        text-decoration: none;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
+      }
+
+      .btn:hover {
+        background: var(--accent-color);
+        color: #000;
+        box-shadow: 0 0 25px var(--accent-glow);
+        transform: translateY(-2px);
+      }
+
+      /* --- Section Titles --- */
+      .section-title {
+        font-size: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 3rem;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--accent-color);
+        box-shadow: 0 0 8px var(--accent-glow);
+      }
+
+      /* --- Projects Grid --- */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        width: 100%;
+      }
+
+      .project-card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 8px;
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-color);
+        box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
+      }
+
+      .project-card h3 {
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+      }
+
+      .project-card p {
+        color: var(--text-muted);
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      .project-link {
+        color: var(--accent-color);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .project-link:hover {
+        text-decoration: underline;
+      }
+
+      /* --- Contact Form --- */
+      .contact-container {
+        max-width: 600px;
+        width: 100%;
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        padding: 2.5rem;
+        border-radius: 8px;
+        backdrop-filter: blur(10px);
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 0.5rem;
+        color: var(--text-muted);
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--card-border);
+        border-radius: 4px;
+        color: #fff;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--accent-color);
+        box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+      }
+
+      /* --- Responsive Design --- */
+      @media (max-width: 768px) {
+        header {
+          padding: 1.5rem 5%;
+        }
+        section {
+          padding: 6rem 5% 3rem 5%;
+        }
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        nav a {
+          margin-left: 1rem;
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="starlink-canvas"></canvas>
+
+    <header>
+      <a href="#" class="logo">STAR<span>LINK</span></a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section id="hero" class="hero">
+      <h1>Global Connectivity.<br /><span>Next-Gen Interface.</span></h1>
+      <p>
+        I am a creative developer specializing in building high-performance,
+        resilient, and visually stunning digital architectures. Connecting ideas
+        across the digital cosmos.
+      </p>
+      <a href="#projects" class="btn">Explore Orbit</a>
+    </section>
+
+    <section id="about">
+      <h2 class="section-title">Orbital Specifications</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>01 / Frontend Telemetry</h3>
+          <p>
+            Crafting responsive, real-time user interfaces utilizing modern
+            frameworks, fine-tuned for ultimate speed and low-latency
+            interaction.
+          </p>
+        </div>
+        <div class="project-card">
+          <h3>02 / Backend Downlink</h3>
+          <p>
+            Engineering secure, robust server-side systems and data pipelines
+            capable of routing heavy application traffic without packet loss.
+          </p>
+        </div>
+        <div class="project-card">
+          <h3>03 / System Architecture</h3>
+          <p>
+            Designing scalable cloud networks and automation scripts that ensure
+            software remains online, synchronized, and globally accessible.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Deployed Satellites</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Project Falcon</h3>
+          <p>
+            An interactive, web-based data visualization platform mapping
+            high-frequency global asset transactions with millisecond precision.
+          </p>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
+        </div>
+        <div class="project-card">
+          <h3>Quantum Link</h3>
+          <p>
+            A decentralized messaging client utilizing end-to-end cryptographic
+            handshakes, wrapped in a sleek matrix-style UI.
+          </p>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
+        </div>
+        <div class="project-card">
+          <h3>Nebula OS</h3>
+          <p>
+            A lightweight, browser-based mock operating system complete with
+            functional terminal apps, file managers, and node nodes.
+          </p>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title">Establish Downlink</h2>
+      <div class="contact-container">
+        <form
+          action="#"
+          method="POST"
+          onsubmit="event.preventDefault(); alert('Transmission Received.');"
+        >
+          <div class="form-group">
+            <label for="name">Identifier (Name)</label>
+            <input type="text" id="name" required autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label for="email">Frequency (Email)</label>
+            <input type="email" id="email" required autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label for="message">Transmission (Message)</label>
+            <textarea id="message" rows="5" required></textarea>
+          </div>
+          <button
+            type="submit"
+            class="btn"
+            style="width: 100%; cursor: pointer"
+          >
+            Send Signal
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <script>
+      const canvas = document.getElementById('starlink-canvas');
+      const ctx = canvas.getContext('2d');
+
+      let resizeTimeout;
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      // Optimize resizing performance
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resizeCanvas, 150);
+      });
+      resizeCanvas();
+
+      // Node Configuration
+      const stars = [];
+      const numStars = 100; // Total satellites/nodes
+      const connectionDistance = 120; // Max distance to draw network lines
+
+      class Star {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.4; // Subtle, slow movement
+          this.vy = (Math.random() - 0.5) * 0.4;
+          this.radius = Math.random() * 1.5 + 0.5;
+        }
+
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Wrap around edges like wrapping orbits
+          if (this.x < 0) this.x = canvas.width;
+          if (this.x > canvas.width) this.x = 0;
+          if (this.y < 0) this.y = canvas.height;
+          if (this.y > canvas.height) this.y = 0;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+          ctx.fill();
+        }
+      }
+
+      // Initialize nodes
+      for (let i = 0; i < numStars; i++) {
+        stars.push(new Star());
+      }
+
+      // Animation Loop
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Update and draw nodes
+        stars.forEach((star) => {
+          star.update();
+          star.draw();
+        });
+
+        // Draw network connections (Mesh topology)
+        for (let i = 0; i < stars.length; i++) {
+          for (let j = i + 1; j < stars.length; j++) {
+            const dx = stars[i].x - stars[j].x;
+            const dy = stars[i].y - stars[j].y;
+            const distance = Math.sqrt(dx * dx + dx * dy); // Approximate/Fast math space distance
+
+            if (distance < connectionDistance) {
+              // Calculate opacity based on proximity
+              const opacity = 1 - distance / connectionDistance;
+              ctx.beginPath();
+              ctx.moveTo(stars[i].x, stars[i].y);
+              ctx.lineTo(stars[j].x, stars[j].y);
+              // Faint cyan network wires
+              ctx.strokeStyle = `rgba(0, 242, 254, ${opacity * 0.15})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
