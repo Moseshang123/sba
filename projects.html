@@ -1,387 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Projects - MosesHang</title>
-    <style>
-      /* --- Reset & Core Styles --- */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      }
 
-      :root {
-        --bg-color: #03030c;
-        --text-color: #ffffff;
-        --text-muted: #8a99ad;
-        --accent-color: #00f2fe;
-        --accent-glow: rgba(0, 242, 254, 0.4);
-        --card-bg: rgba(255, 255, 255, 0.03);
-        --card-border: rgba(255, 255, 255, 0.08);
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects - MosesHang</title>
+  <style>
+    /* --- Reset & Core Styles --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
 
-      body {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-      }
+    :root {
+      --bg-color: #03030c;
+      --text-color: #ffffff;
+      --text-muted: #8a99ad;
+      --accent-color: #00f2fe;
+      --accent-glow: rgba(0, 242, 254, 0.4);
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+    }
 
-      /* --- Background Canvas --- */
-      #starlink-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        pointer-events: none;
-      }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-      /* --- Navigation --- */
-      header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 1.5rem 10%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        z-index: 100;
-        background: linear-gradient(
-          to bottom,
+    /* --- Background Canvas --- */
+    #starlink-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* --- Navigation --- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1.5rem 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      background: linear-gradient(to bottom,
           rgba(3, 3, 12, 0.8),
-          transparent
-        );
-        backdrop-filter: blur(5px);
+          transparent);
+      backdrop-filter: blur(5px);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-color);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent-color);
+      text-shadow: 0 0 10px var(--accent-glow);
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    nav a:hover,
+    nav a[aria-current='page'] {
+      color: var(--accent-color);
+      text-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    /* --- Layout Sections --- */
+    section {
+      min-height: 100vh;
+      padding: 8rem 10% 4rem 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    /* --- Section Titles --- */
+    .section-title {
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background-color: var(--accent-color);
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    /* --- Filter Buttons --- */
+    .filter-container {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1.5rem;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-muted);
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      color: var(--text-color);
+      border-color: var(--accent-color);
+      background: rgba(0, 242, 254, 0.1);
+      box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
+    }
+
+    /* --- Projects Grid --- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, opacity 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-color);
+      box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
+    }
+
+    .project-card.hidden {
+      display: none;
+    }
+
+    .project-card h3 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .project-link {
+      color: var(--accent-color);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Responsive Design --- */
+    @media (max-width: 768px) {
+      header {
+        padding: 1.5rem 5%;
       }
 
-      .logo {
-        font-size: 1.5rem;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: var(--text-color);
-        text-decoration: none;
-      }
-
-      .logo span {
-        color: var(--accent-color);
-        text-shadow: 0 0 10px var(--accent-glow);
+      section {
+        padding: 6rem 5% 3rem 5%;
       }
 
       nav a {
-        color: var(--text-muted);
-        text-decoration: none;
-        margin-left: 2rem;
-        font-size: 0.9rem;
-        letter-spacing: 1px;
-        transition: color 0.3s, text-shadow 0.3s;
+        margin-left: 1rem;
+        font-size: 0.8rem;
       }
+    }
+  </style>
+</head>
 
-      nav a:hover,
-      nav a[aria-current='page'] {
-        color: var(--accent-color);
-        text-shadow: 0 0 8px var(--accent-glow);
-      }
+<body>
+  <canvas id="starlink-canvas"></canvas>
 
-      /* --- Layout Sections --- */
-      section {
-        min-height: 100vh;
-        padding: 8rem 10% 4rem 10%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-      }
+  <header>
+    <a href="index.html" class="logo">Moses<span>Hang</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
 
-      /* --- Section Titles --- */
-      .section-title {
-        font-size: 2rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 2rem;
-        position: relative;
-        display: inline-block;
-      }
+  <main>
+    <section id="projects">
+      <h2 class="section-title">MosesHang's Projects</h2>
 
-      .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -10px;
-        left: 0;
-        width: 50px;
-        height: 2px;
-        background-color: var(--accent-color);
-        box-shadow: 0 0 8px var(--accent-glow);
-      }
+      <!-- 分類篩選按鈕區塊 -->
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="game">Game</button>
+        <button class="filter-btn" data-filter="art">Art</button>
+        <button class="filter-btn" data-filter="challenge">Challenge</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+      </div>
 
-      /* --- Filter Buttons --- */
-      .filter-container {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 2.5rem;
-        flex-wrap: wrap;
-      }
-
-      .filter-btn {
-        padding: 0.6rem 1.5rem;
-        border: 1px solid var(--card-border);
-        background: var(--card-bg);
-        color: var(--text-muted);
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 0.9rem;
-        letter-spacing: 1px;
-        backdrop-filter: blur(5px);
-        transition: all 0.3s ease;
-      }
-
-      .filter-btn:hover,
-      .filter-btn.active {
-        color: var(--text-color);
-        border-color: var(--accent-color);
-        background: rgba(0, 242, 254, 0.1);
-        box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
-      }
-
-      /* --- Projects Grid --- */
-      .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        width: 100%;
-      }
-
-      .project-card {
-        background: var(--card-bg);
-        border: 1px solid var(--card-border);
-        border-radius: 8px;
-        padding: 2rem;
-        backdrop-filter: blur(10px);
-        transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s, opacity 0.3s;
-      }
-
-      .project-card:hover {
-        transform: translateY(-5px);
-        border-color: var(--accent-color);
-        box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
-      }
-
-      .project-card.hidden {
-        display: none;
-      }
-
-      .project-card h3 {
-        margin-bottom: 1rem;
-        font-size: 1.4rem;
-        letter-spacing: 0.5px;
-      }
-
-      .project-card p {
-        color: var(--text-muted);
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
-        font-size: 0.95rem;
-      }
-
-      .project-link {
-        color: var(--accent-color);
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-      }
-
-      .project-link:hover {
-        text-decoration: underline;
-      }
-
-      /* --- Responsive Design --- */
-      @media (max-width: 768px) {
-        header {
-          padding: 1.5rem 5%;
-        }
-        section {
-          padding: 6rem 5% 3rem 5%;
-        }
-        nav a {
-          margin-left: 1rem;
-          font-size: 0.8rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="starlink-canvas"></canvas>
-
-    <header>
-      <a href="index.html" class="logo">Moses<span>Hang</span></a>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="projects.html" aria-current="page">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <section id="projects">
-        <h2 class="section-title">MosesHang's Projects</h2>
-
-        <!-- 分類篩選按鈕區塊 -->
-        <div class="filter-container">
-          <button class="filter-btn active" data-filter="all">All</button>
-          <button class="filter-btn" data-filter="game">Game</button>
-          <button class="filter-btn" data-filter="art">Art</button>
-          <button class="filter-btn" data-filter="challenge">Challenge</button>
+      <!-- 專案網格區塊 -->
+      <div class="projects-grid">
+        <div class="project-card" data-category="game">
+          <h3>Ninja Jump Jump Jump</h3>
+          <p>
+            2024/04/29 #Roblox
+            <br /><br />
+            This is a 2D reaction-based game where you play as a ninja who is constantly running forward.
+            You need to dodge traps, lasers, zombies, and other obstacles.
+            The game has no end and is designed for you to play and relax.
+          </p>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
 
-        <!-- 專案網格區塊 -->
-        <div class="projects-grid">
-          <div class="project-card" data-category="game">
-            <h3>Ninja Jump Jump Jump</h3>
-            <p>
-              2024/04/29 #Roblox
-              <br /><br />
-              This is a 2D reaction-based game where you play as a ninja who is constantly running forward. 
-              You need to dodge traps, lasers, zombies, and other obstacles. 
-              The game has no end and is designed for you to play and relax.[cite: 2]
-            </p>
-            <a href="#" class="project-link">View Terminal &rarr;</a>
-          </div>
-
-          <div class="project-card" data-category="art">
-            <h3>Cursed blue-face car crash painting</h3>
-            <p>
-              2023/11/21 #Drawing
-              <br /><br />
-              A work composed of various elements from different magazines.[cite: 2]
-            </p>
-            <a href="#" class="project-link">View Terminal &rarr;</a>
-          </div>
-
-          <div class="project-card" data-category="challenge">
-            <h3>Kennedy Town🚶‍♂️‍➡️island Resort</h3>
-            <p>
-              2026/08/07 #Walking
-              <br /><br />
-              Challenge yourself by walking through Hong Kong.[cite: 2]
-            </p>
-            <a href="#" class="project-link">View Terminal &rarr;</a>
-          </div>
+        <div class="project-card" data-category="art">
+          <h3>Cursed blue-face car crash painting</h3>
+          <p>
+            2023/11/21 #Drawing
+            <br /><br />
+            A work composed of various elements from different magazines.
+          </p>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
-      </section>
-    </main>
 
-    <script>
-      /* --- Starlink Background Canvas Animation --- */
-      const canvas = document.getElementById('starlink-canvas');
-      const ctx = canvas.getContext('2d');
+        <div class="project-card" data-category="challenge">
+          <h3>Kennedy Town🚶‍♂️‍➡️island Resort</h3>
+          <p>
+            2026/08/07 #Walking
+            <br /><br />
+            Challenge yourself by walking through Hong Kong.
+          </p>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
+        </div>
+        <div class="project-card" data-category="web">
+          <h3>Adventurer Form</h3>
+          <p>
+            2024/12/20 #freecodecamp
+            <br /><br />
+            My ICT first project
+          </p>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
+        </div>
+        <div class="project-card" data-category="web">
+          <h3>YOASOBI introduce</h3>
+          <p>
+            2025/08/01 #freecodecamp
+            <br /><br />
+            Introduce YOASOBI
+          </p>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
+        </div>
+        <div class="project-card" data-category="web">
+          <h3>Pokemon history</h3>
+          <p>
+            2025/04/30 #freecodecamp
+            <br /><br />
+            Introduce pokemon history of animation
+          </p>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-      let resizeTimeout;
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+  <script>
+    /* --- Starlink Background Canvas Animation --- */
+    const canvas = document.getElementById('starlink-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let resizeTimeout;
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resizeCanvas, 150);
+    });
+    resizeCanvas();
+
+    const stars = [];
+    const numStars = 100;
+    const connectionDistance = 120;
+
+    class Star {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius = Math.random() * 1.5 + 0.5;
       }
 
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(resizeCanvas, 150);
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < numStars; i++) {
+      stars.push(new Star());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      stars.forEach((star) => {
+        star.update();
+        star.draw();
       });
-      resizeCanvas();
 
-      const stars = [];
-      const numStars = 100;
-      const connectionDistance = 120;
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x;
+          const dy = stars[i].y - stars[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
 
-      class Star {
-        constructor() {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-          this.vx = (Math.random() - 0.5) * 0.4;
-          this.vy = (Math.random() - 0.5) * 0.4;
-          this.radius = Math.random() * 1.5 + 0.5;
-        }
-
-        update() {
-          this.x += this.vx;
-          this.y += this.vy;
-
-          if (this.x < 0) this.x = canvas.width;
-          if (this.x > canvas.width) this.x = 0;
-          if (this.y < 0) this.y = canvas.height;
-          if (this.y > canvas.height) this.y = 0;
-        }
-
-        draw() {
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-          ctx.fill();
-        }
-      }
-
-      for (let i = 0; i < numStars; i++) {
-        stars.push(new Star());
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        stars.forEach((star) => {
-          star.update();
-          star.draw();
-        });
-
-        for (let i = 0; i < stars.length; i++) {
-          for (let j = i + 1; j < stars.length; j++) {
-            const dx = stars[i].x - stars[j].x;
-            const dy = stars[i].y - stars[j].y;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < connectionDistance) {
-              const opacity = 1 - distance / connectionDistance;
-              ctx.beginPath();
-              ctx.moveTo(stars[i].x, stars[i].y);
-              ctx.lineTo(stars[j].x, stars[j].y);
-              ctx.strokeStyle = `rgba(0, 242, 254, ${opacity * 0.15})`;
-              ctx.lineWidth = 0.5;
-              ctx.stroke();
-            }
+          if (distance < connectionDistance) {
+            const opacity = 1 - distance / connectionDistance;
+            ctx.beginPath();
+            ctx.moveTo(stars[i].x, stars[i].y);
+            ctx.lineTo(stars[j].x, stars[j].y);
+            ctx.strokeStyle = `rgba(0, 242, 254, ${opacity * 0.15})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
           }
         }
-
-        requestAnimationFrame(animate);
       }
 
-      animate();
+      requestAnimationFrame(animate);
+    }
 
-      /* --- Category Filter Logic --- */
-      const filterBtns = document.querySelectorAll('.filter-btn');
-      const projectCards = document.querySelectorAll('.project-card');
+    animate();
 
-      filterBtns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          filterBtns.forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
+    /* --- Category Filter Logic --- */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
 
-          const filterValue = btn.getAttribute('data-filter');
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
 
-          projectCards.forEach((card) => {
-            const category = card.getAttribute('data-category');
-            if (filterValue === 'all' || filterValue === category) {
-              card.classList.remove('hidden');
-            } else {
-              card.classList.add('hidden');
-            }
-          });
+        const filterValue = btn.getAttribute('data-filter');
+
+        projectCards.forEach((card) => {
+          const category = card.getAttribute('data-category');
+          if (filterValue === 'all' || filterValue === category) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
         });
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>
