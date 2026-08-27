@@ -194,123 +194,10 @@
       font-weight: 600;
       display: inline-flex;
       align-items: center;
-      cursor: pointer;
     }
 
     .project-link:hover {
       text-decoration: underline;
-    }
-
-    /* --- Modal 樣式 --- */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(3, 3, 12, 0.85);
-      backdrop-filter: blur(8px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .modal-box {
-      background: #0a0d1d;
-      border: 1px solid var(--accent-color);
-      box-shadow: 0 0 25px var(--accent-glow);
-      border-radius: 12px;
-      width: 90%;
-      max-width: 800px;
-      padding: 2rem;
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1.5rem;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.8rem;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .modal-close:hover {
-      color: var(--accent-color);
-    }
-
-    /* 左側圖片區塊 */
-    .modal-left {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      overflow: hidden;
-      min-height: 250px;
-    }
-
-    .modal-left img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /* 右側內容區塊 */
-    .modal-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .modal-top-text h3 {
-      font-size: 1.6rem;
-      margin-bottom: 0.8rem;
-      color: var(--text-color);
-    }
-
-    .modal-top-text p {
-      color: var(--text-muted);
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    .modal-bottom-link {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 1.5rem;
-    }
-
-    .modal-btn {
-      padding: 0.6rem 1.2rem;
-      background: var(--accent-color);
-      color: #03030c;
-      font-weight: 700;
-      text-decoration: none;
-      border-radius: 4px;
-      box-shadow: 0 0 10px var(--accent-glow);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .modal-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 15px var(--accent-color);
     }
 
     /* --- Responsive Design --- */
@@ -326,12 +213,6 @@
       nav a {
         margin-left: 1rem;
         font-size: 0.8rem;
-      }
-
-      .modal-box {
-        grid-template-columns: 1fr;
-        max-height: 90vh;
-        overflow-y: auto;
       }
     }
   </style>
@@ -365,124 +246,100 @@
 
       <!-- 專案網格區塊 -->
       <div class="projects-grid">
-        <div class="project-card" data-category="game" data-img="https://via.placeholder.com/400x300" data-url="https://roblox.com">
+        <div class="project-card" data-category="game">
           <h3>Ninja Jump Jump Jump</h3>
           <p>
             2024/04/29 #Roblox
             <br /><br />
             This is a 2D reaction-based game where you play as a ninja who is constantly running forward.
             You need to dodge traps, lasers, zombies, and other obstacles.
-            The game has no end and is designed for you to play and relax.[cite: 3]
+            The game has no end and is designed for you to play and relax.
           </p>
-          <a class="project-link">View Terminal &rarr;</a>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
-        <div class="project-card" data-category="game" data-img="https://via.placeholder.com/400x300" data-url="https://roblox.com">
+        <div class="project-card" data-category="game">
           <h3>Find the button</h3>
           <p>
             2025/04/28 #Roblox
             <br /><br />
             This is a game that tests your keen eye and powers of observation.
             You must use your sharp eyes to locate the button that leads to the next level, but be careful to avoid the
-            trap buttons that send you back to the start.[cite: 3]
+            trap buttons that send you back to the start.
           </p>
-          <a class="project-link">View Terminal &rarr;</a>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
 
-        <div class="project-card" data-category="game" data-img="https://via.placeholder.com/400x300" data-url="https://roblox.com">
+        <div class="project-card" data-category="game">
           <h3>Toliet obby</h3>
           <p>
             2023/09/04 #Roblox
             <br /><br />
             Toilet obby is called toilet parkour. It is basically the same as other parkour games. However, toilet obby
             has a special feature. It does not get harder as you go. It is simple and difficult and simple and
-            difficult. So it is a very special and strange parkour game. I hope you have fun and enjoy Toilet obby.[cite: 3]
+            difficult. So it is a very special and strange parkour game. I hope you have fun and enjoy Toilet obby.
           </p>
-          <a class="project-link">View Terminal &rarr;</a>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
-        <div class="project-card" data-category="game" data-img="https://via.placeholder.com/400x300" data-url="https://roblox.com">
+        <div class="project-card" data-category="game">
           <h3>Eternal Runner</h3>
           <p>
             2025/09/14 #Roblox
             <br /><br />
             Eternal Runner is a fast-paced parkour game where players must navigate their character through obstacles
             and traps. The challenge intensifies as the speed increases! Put your reflexes to the test and set a new
-            record![cite: 3]
+            record!
           </p>
-          <a class="project-link">View Terminal &rarr;</a>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
-        <div class="project-card" data-category="art" data-img="https://via.placeholder.com/400x300" data-url="#">
+        <div class="project-card" data-category="art">
           <h3>Cursed blue-face car crash painting</h3>
           <p>
             2023/11/21 #Drawing
             <br /><br />
-            A work composed of various elements from different magazines.[cite: 3]
+            A work composed of various elements from different magazines.
           </p>
-          <a class="project-link">View Terminal &rarr;</a>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
 
-        <div class="project-card" data-category="challenge" data-img="https://via.placeholder.com/400x300" data-url="#">
+        <div class="project-card" data-category="challenge">
           <h3>Kennedy Town🚶‍♂️‍➡️island Resort</h3>
           <p>
             2026/08/07 #Walking
             <br /><br />
-            Challenge yourself by walking through Hong Kong.[cite: 3]
+            Challenge yourself by walking through Hong Kong.
           </p>
-          <a class="project-link">View Terminal &rarr;</a>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
-        <!-- 已修改 Adventurer Form 的 data-url 屬性為 web1.html -->
-        <div class="project-card" data-category="web" data-img="https://via.placeholder.com/400x300" data-url="web1.html">
+        <div class="project-card" data-category="web">
           <h3>Adventurer Form</h3>
           <p>
             2024/12/20 #freecodecamp
             <br /><br />
-            My ICT first project[cite: 3]
+            My ICT first project
           </p>
-          <a class="project-link">View Terminal &rarr;</a>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
-        <div class="project-card" data-category="web" data-img="https://via.placeholder.com/400x300" data-url="#">
+        <div class="project-card" data-category="web">
           <h3>YOASOBI introduce</h3>
           <p>
             2025/08/01 #freecodecamp
             <br /><br />
-            Introduce YOASOBI[cite: 3]
+            Introduce YOASOBI
           </p>
-          <a class="project-link">View Terminal &rarr;</a>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
-        <div class="project-card" data-category="web" data-img="https://via.placeholder.com/400x300" data-url="#">
+        <div class="project-card" data-category="web">
           <h3>Pokemon history</h3>
           <p>
             2025/04/30 #freecodecamp
             <br /><br />
-            Introduce pokemon history of animation[cite: 3]
+            Introduce pokemon history of animation
           </p>
-          <a class="project-link">View Terminal &rarr;</a>
+          <a href="#" class="project-link">View Terminal &rarr;</a>
         </div>
       </div>
     </section>
   </main>
-
-  <!-- Modal 彈出視窗 -->
-  <div class="modal-overlay" id="project-modal">
-    <div class="modal-box">
-      <button class="modal-close" id="modal-close">&times;</button>
-      
-      <!-- 左側：相片 -->
-      <div class="modal-left">
-        <img id="modal-img" src="" alt="Project Image" />
-      </div>
-
-      <!-- 右側：右上文字、右下連結 -->
-      <div class="modal-right">
-        <div class="modal-top-text">
-          <h3 id="modal-title">Project Title</h3>
-          <p id="modal-desc">Project Description...</p>
-        </div>
-        <div class="modal-bottom-link">
-          <a id="modal-link" href="#" target="_blank" class="modal-btn">Visit Project &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script>
     /* --- Starlink Background Canvas Animation --- */
@@ -587,38 +444,6 @@
           }
         });
       });
-    });
-
-    /* --- Modal 彈出視窗邏輯 --- */
-    const modal = document.getElementById('project-modal');
-    const modalClose = document.getElementById('modal-close');
-    const modalImg = document.getElementById('modal-img');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDesc = document.getElementById('modal-desc');
-    const modalLink = document.getElementById('modal-link');
-
-    document.querySelectorAll('.project-link').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const card = link.closest('.project-card');
-        
-        const title = card.querySelector('h3').innerText;
-        const desc = card.querySelector('p').innerHTML;
-        const imgUrl = card.getAttribute('data-img') || 'https://via.placeholder.com/400x300';
-        const projectUrl = card.getAttribute('data-url') || '#';
-
-        modalTitle.innerText = title;
-        modalDesc.innerHTML = desc;
-        modalImg.src = imgUrl;
-        modalLink.href = projectUrl;
-
-        modal.classList.add('active');
-      });
-    });
-
-    modalClose.addEventListener('click', () => modal.classList.remove('active'));
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
     });
   </script>
 </body>
