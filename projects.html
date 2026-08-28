@@ -31,7 +31,6 @@
       scroll-behavior: smooth;
     }
 
-    /* --- Background Canvas --- */
     #starlink-canvas {
       position: fixed;
       top: 0;
@@ -42,7 +41,6 @@
       pointer-events: none;
     }
 
-    /* --- Navigation --- */
     header {
       position: fixed;
       top: 0;
@@ -53,9 +51,7 @@
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: linear-gradient(to bottom,
-          rgba(3, 3, 12, 0.8),
-          transparent);
+      background: linear-gradient(to bottom, rgba(3, 3, 12, 0.8), transparent);
       backdrop-filter: blur(5px);
     }
 
@@ -88,7 +84,6 @@
       text-shadow: 0 0 8px var(--accent-glow);
     }
 
-    /* --- Layout Sections --- */
     section {
       min-height: 100vh;
       padding: 8rem 10% 4rem 10%;
@@ -97,7 +92,6 @@
       justify-content: flex-start;
     }
 
-    /* --- Section Titles --- */
     .section-title {
       font-size: 2rem;
       text-transform: uppercase;
@@ -118,7 +112,6 @@
       box-shadow: 0 0 8px var(--accent-glow);
     }
 
-    /* --- Filter Buttons --- */
     .filter-container {
       display: flex;
       gap: 1rem;
@@ -147,7 +140,6 @@
       box-shadow: 0 0 12px rgba(0, 242, 254, 0.25);
     }
 
-    /* --- Projects Grid & Flip Card Effect --- */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -158,9 +150,7 @@
     .project-card {
       background: transparent;
       perspective: 1000px;
-      /* Required for 3D flip effect */
       min-height: 360px;
-      /* Fixed height for absolute inner layers */
     }
 
     .project-card.hidden {
@@ -204,7 +194,6 @@
       box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
     }
 
-    /* Front Face Styles */
     .flip-card-front {
       justify-content: center;
       align-items: center;
@@ -226,7 +215,6 @@
       opacity: 0.8;
     }
 
-    /* Back Face Styles */
     .flip-card-back {
       transform: rotateY(180deg);
       justify-content: flex-start;
@@ -244,7 +232,6 @@
       margin-bottom: 1.5rem;
       font-size: 0.95rem;
       flex-grow: 1;
-      /* Pushes the link to the bottom if content is short */
     }
 
     .project-link {
@@ -262,7 +249,6 @@
       text-decoration: underline;
     }
 
-    /* --- Modal 樣式 --- */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -372,26 +358,11 @@
       box-shadow: 0 0 15px var(--accent-color);
     }
 
-    /* --- Responsive Design --- */
     @media (max-width: 768px) {
-      header {
-        padding: 1.5rem 5%;
-      }
-
-      section {
-        padding: 6rem 5% 3rem 5%;
-      }
-
-      nav a {
-        margin-left: 1rem;
-        font-size: 0.8rem;
-      }
-
-      .modal-box {
-        grid-template-columns: 1fr;
-        max-height: 90vh;
-        overflow-y: auto;
-      }
+      header { padding: 1.5rem 5%; }
+      section { padding: 6rem 5% 3rem 5%; }
+      nav a { margin-left: 1rem; font-size: 0.8rem; }
+      .modal-box { grid-template-columns: 1fr; max-height: 90vh; overflow-y: auto; }
     }
   </style>
 </head>
@@ -413,7 +384,6 @@
     <section id="projects">
       <h2 class="section-title">MosesHang's Projects</h2>
 
-      <!-- 分類篩選按鈕區塊 -->
       <div class="filter-container">
         <button class="filter-btn active" data-filter="all">All</button>
         <button class="filter-btn" data-filter="game">Game</button>
@@ -422,244 +392,17 @@
         <button class="filter-btn" data-filter="web">Web</button>
       </div>
 
-      <!-- 專案網格區塊 -->
-      <div class="projects-grid">
-
-        <div class="project-card" data-category="game" data-img="https://via.placeholder.com/400x300"
-          data-url="https://roblox.com">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Ninja Jump Jump Jump</h3>
-              <p>2D side-scrolling running game.</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Ninja Jump Jump Jump</h3>
-              <p>
-                2024/04/29 #Roblox
-                <br /><br />
-                This is a 2D reaction-based game where you play as a ninja who is constantly running forward.
-                You need to dodge traps, lasers, zombies, and other obstacles.
-                The game has no end and is designed for you to play and relax.
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="game" data-img="https://via.placeholder.com/400x300"
-          data-url="https://roblox.com">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Find the button</h3>
-              <p>My first attempt at using code in a game.</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Find the button</h3>
-              <p>
-                2025/04/28 #Roblox
-                <br /><br />
-                This is a game that tests your keen eye and powers of observation.
-                You must use your sharp eyes to locate the button that leads to the next level, but be careful to avoid
-                the
-                trap buttons that send you back to the start.
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="game" data-img="https://via.placeholder.com/400x300"
-          data-url="https://roblox.com">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Toliet obby</h3>
-              <p>My first game</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Toliet obby</h3>
-              <p>
-                2023/09/04 #Roblox
-                <br /><br />
-                Toilet obby is called toilet parkour. It is basically the same as other parkour games. However, toilet
-                obby
-                has a special feature. It does not get harder as you go. It is simple and difficult and simple and
-                difficult. So it is a very special and strange parkour game. I hope you have fun and enjoy Toilet obby.
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="game" data-img="https://via.placeholder.com/400x300"
-          data-url="https://roblox.com">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Eternal Runner</h3>
-              <p>3D stereo third person rear end collision perspective.</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Eternal Runner</h3>
-              <p>
-                2025/09/14 #Roblox
-                <br /><br />
-                Eternal Runner is a fast-paced parkour game where players must navigate their character through
-                obstacles
-                and traps. The challenge intensifies as the speed increases! Put your reflexes to the test and set a new
-                record!
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="game" data-img="https://via.placeholder.com/400x300"
-          data-url="https://roblox.com">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>U Need Transcends</h3>
-              <p>use code to make's game teamwork with brian yu.</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>U Need Transcends</h3>
-              <p>
-                2026/04/29 #Roblox
-                <br /><br />
-                use code to make,s game
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="art" data-img="https://via.placeholder.com/400x300" data-url="#">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Cursed blue-face car crash painting</h3>
-              <p>A work composed of various elements from different magazines.</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Cursed blue-face car crash painting</h3>
-              <p>
-                2023/11/21 #Drawing
-                <br /><br />
-                A project created during the third year of junior high school, in which a story was composed by
-                combining photographic elements from various magazines.
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="art" data-img="https://via.placeholder.com/400x300" data-url="#">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Old Summer Palace have summer break</h3>
-              <p>Hover for details</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Old Summer Palace have summer break</h3>
-              <p>
-                2024/07/30 #Sandbox
-                <br /><br />
-                During the break between Secondary 3 and Secondary 4, my teammates and I applied the "sandbox" skills we
-                had learned in class to participate in a competition recommended by our teacher. We chose the Burning of
-                the Old Summer Palace—an event marked by raging flames—as the theme for our project, and created both
-                the work itself and a video presentation.
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="challenge" data-img="https://via.placeholder.com/400x300" data-url="#">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Kennedy Town🚶‍♂️‍➡️island Resort</h3>
-              <p>Challenge yourself by walking through Hong Kong.</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Kennedy Town🚶‍♂️‍➡️island Resort</h3>
-              <p>
-                2026/08/07 #Walking
-                <br /><br />
-                During the holidays, after playing soccer in the sweltering heat, my friend and I challenged ourselves
-                to walk across half of Hong Kong.
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="web" data-img="https://via.placeholder.com/400x300"
-          data-url="web1.html">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Adventurer Form</h3>
-              <p>My ICT first project.</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Adventurer Form</h3>
-              <p>
-                2024/12/20 #freecodecamp
-                <br /><br />
-                My ICT first project
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="web" data-img="https://via.placeholder.com/400x300" data-url="#">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>YOASOBI introduce</h3>
-              <p>Introduce YOASOBI.</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>YOASOBI introduce</h3>
-              <p>
-                2025/08/01 #freecodecamp
-                <br /><br />
-                Introduce YOASOBI
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card" data-category="web" data-img="https://via.placeholder.com/400x300" data-url="#">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <h3>Pokemon history</h3>
-              <p>Introduce pokemon history of animation.</p>
-            </div>
-            <div class="flip-card-back">
-              <h3>Pokemon history</h3>
-              <p>
-                2025/04/30 #freecodecamp
-                <br /><br />
-                Introduce pokemon history of animation
-              </p>
-              <a class="project-link">View Terminal &rarr;</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
+      <!-- 動態載入專案容器 -->
+      <div class="projects-grid" id="projects-grid"></div>
     </section>
   </main>
 
-  <!-- Modal 彈出視窗 -->
   <div class="modal-overlay" id="project-modal">
     <div class="modal-box">
       <button class="modal-close" id="modal-close">&times;</button>
-
-      <!-- 左側：相片 -->
       <div class="modal-left">
         <img id="modal-img" src="" alt="Project Image" />
       </div>
-
-      <!-- 右側：右上文字、右下連結 -->
       <div class="modal-right">
         <div class="modal-top-text">
           <h3 id="modal-title">Project Title</h3>
@@ -673,11 +416,126 @@
   </div>
 
   <script>
-    /* --- Starlink Background Canvas Animation --- */
+    /* --- 1. 專案資料集 (將所有重複的卡片集中統一管理) --- */
+    const projectsData = [
+      {
+        category: 'game',
+        title: 'Ninja Jump Jump Jump',
+        subtitle: '2D side-scrolling running game.',
+        img: 'https://via.placeholder.com/400x300',
+        url: 'https://roblox.com',
+        description: '2024/04/29 #Roblox<br /><br />This is a 2D reaction-based game where you play as a ninja who is constantly running forward. You need to dodge traps, lasers, zombies, and other obstacles. The game has no end and is designed for you to play and relax.'
+      },
+      {
+        category: 'game',
+        title: 'Find the button',
+        subtitle: 'My first attempt at using code in a game.',
+        img: 'https://via.placeholder.com/400x300',
+        url: 'https://roblox.com',
+        description: '2025/04/28 #Roblox<br /><br />This is a game that tests your keen eye and powers of observation. You must use your sharp eyes to locate the button that leads to the next level, but be careful to avoid the trap buttons that send you back to the start.'
+      },
+      {
+        category: 'game',
+        title: 'Toliet obby',
+        subtitle: 'My first game',
+        img: 'https://via.placeholder.com/400x300',
+        url: 'https://roblox.com',
+        description: '2023/09/04 #Roblox<br /><br />Toilet obby is called toilet parkour. It is basically the same as other parkour games. However, toilet obby has a special feature. It does not get harder as you go. It is simple and difficult and simple and difficult. So it is a very special and strange parkour game. I hope you have fun and enjoy Toilet obby.'
+      },
+      {
+        category: 'game',
+        title: 'Eternal Runner',
+        subtitle: '3D stereo third person rear end collision perspective.',
+        img: 'https://via.placeholder.com/400x300',
+        url: 'https://roblox.com',
+        description: '2025/09/14 #Roblox<br /><br />Eternal Runner is a fast-paced parkour game where players must navigate their character through obstacles and traps. The challenge intensifies as the speed increases! Put your reflexes to the test and set a new record!'
+      },
+      {
+        category: 'game',
+        title: 'U Need Transcends',
+        subtitle: "use code to make's game teamwork with brian yu.",
+        img: 'https://via.placeholder.com/400x300',
+        url: 'https://roblox.com',
+        description: "2026/04/29 #Roblox<br /><br />use code to make's game"
+      },
+      {
+        category: 'art',
+        title: 'Cursed blue-face car crash painting',
+        subtitle: 'A work composed of various elements from different magazines.',
+        img: 'https://via.placeholder.com/400x300',
+        url: '#',
+        description: '2023/11/21 #Drawing<br /><br />A project created during the third year of junior high school, in which a story was composed by combining photographic elements from various magazines.'
+      },
+      {
+        category: 'art',
+        title: 'Old Summer Palace have summer break',
+        subtitle: 'Hover for details',
+        img: 'https://via.placeholder.com/400x300',
+        url: '#',
+        description: '2024/07/30 #Sandbox<br /><br />During the break between Secondary 3 and Secondary 4, my teammates and I applied the "sandbox" skills we had learned in class to participate in a competition recommended by our teacher. We chose the Burning of the Old Summer Palace—an event marked by raging flames—as the theme for our project, and created both the work itself and a video presentation.'
+      },
+      {
+        category: 'challenge',
+        title: 'Kennedy Town🚶‍♂️‍➡️island Resort',
+        subtitle: 'Challenge yourself by walking through Hong Kong.',
+        img: 'https://via.placeholder.com/400x300',
+        url: '#',
+        description: '2026/08/07 #Walking<br /><br />During the holidays, after playing soccer in the sweltering heat, my friend and I challenged ourselves to walk across half of Hong Kong.'
+      },
+      {
+        category: 'web',
+        title: 'Adventurer Form',
+        subtitle: 'My ICT first project.',
+        img: 'https://via.placeholder.com/400x300',
+        url: 'web1.html',
+        description: '2024/12/20 #freecodecamp<br /><br />My ICT first project'
+      },
+      {
+        category: 'web',
+        title: 'YOASOBI introduce',
+        subtitle: 'Introduce YOASOBI.',
+        img: 'https://via.placeholder.com/400x300',
+        url: '#',
+        description: '2025/08/01 #freecodecamp<br /><br />Introduce YOASOBI'
+      },
+      {
+        category: 'web',
+        title: 'Pokemon history',
+        subtitle: 'Introduce pokemon history of animation.',
+        img: 'https://via.placeholder.com/400x300',
+        url: '#',
+        description: '2025/04/30 #freecodecamp<br /><br />Introduce pokemon history of animation'
+      }
+    ];
+
+    /* --- 2. 動態渲染卡片 --- */
+    const gridContainer = document.getElementById('projects-grid');
+
+    function renderProjects() {
+      gridContainer.innerHTML = projectsData.map((p, index) => `
+        <div class="project-card" data-category="${p.category}" data-index="${index}">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <h3>${p.title}</h3>
+              <p>${p.subtitle}</p>
+            </div>
+            <div class="flip-card-back">
+              <h3>${p.title}</h3>
+              <p>${p.description}</p>
+              <a class="project-link">View Terminal &rarr;</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    renderProjects();
+
+    /* --- 3. Starlink 背景動畫 --- */
     const canvas = document.getElementById('starlink-canvas');
     const ctx = canvas.getContext('2d');
-
     let resizeTimeout;
+
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -705,7 +563,6 @@
       update() {
         this.x += this.vx;
         this.y += this.vy;
-
         if (this.x < 0) this.x = canvas.width;
         if (this.x > canvas.width) this.x = 0;
         if (this.y < 0) this.y = canvas.height;
@@ -720,17 +577,11 @@
       }
     }
 
-    for (let i = 0; i < numStars; i++) {
-      stars.push(new Star());
-    }
+    for (let i = 0; i < numStars; i++) stars.push(new Star());
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      stars.forEach((star) => {
-        star.update();
-        star.draw();
-      });
+      stars.forEach((star) => { star.update(); star.draw(); });
 
       for (let i = 0; i < stars.length; i++) {
         for (let j = i + 1; j < stars.length; j++) {
@@ -749,24 +600,19 @@
           }
         }
       }
-
       requestAnimationFrame(animate);
     }
-
     animate();
 
-    /* --- Category Filter Logic --- */
+    /* --- 4. 分類篩選邏輯 --- */
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
     filterBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         filterBtns.forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
 
         const filterValue = btn.getAttribute('data-filter');
-
-        projectCards.forEach((card) => {
+        document.querySelectorAll('.project-card').forEach((card) => {
           const category = card.getAttribute('data-category');
           if (filterValue === 'all' || filterValue === category) {
             card.classList.remove('hidden');
@@ -777,7 +623,7 @@
       });
     });
 
-    /* --- Modal 彈出視窗邏輯 --- */
+    /* --- 5. Modal 彈出視窗邏輯 --- */
     const modal = document.getElementById('project-modal');
     const modalClose = document.getElementById('modal-close');
     const modalImg = document.getElementById('modal-img');
@@ -785,24 +631,21 @@
     const modalDesc = document.getElementById('modal-desc');
     const modalLink = document.getElementById('modal-link');
 
-    document.querySelectorAll('.project-link').forEach((link) => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const card = link.closest('.project-card');
+    gridContainer.addEventListener('click', (e) => {
+      const link = e.target.closest('.project-link');
+      if (!link) return;
 
-        // Grab data from the back of the flip card
-        const title = card.querySelector('.flip-card-back h3').innerText;
-        const desc = card.querySelector('.flip-card-back p').innerHTML;
-        const imgUrl = card.getAttribute('data-img') || 'https://via.placeholder.com/400x300';
-        const projectUrl = card.getAttribute('data-url') || '#';
+      e.preventDefault();
+      const card = link.closest('.project-card');
+      const index = card.getAttribute('data-index');
+      const data = projectsData[index];
 
-        modalTitle.innerText = title;
-        modalDesc.innerHTML = desc;
-        modalImg.src = imgUrl;
-        modalLink.href = projectUrl;
+      modalTitle.innerText = data.title;
+      modalDesc.innerHTML = data.description;
+      modalImg.src = data.img;
+      modalLink.href = data.url;
 
-        modal.classList.add('active');
-      });
+      modal.classList.add('active');
     });
 
     modalClose.addEventListener('click', () => modal.classList.remove('active'));
