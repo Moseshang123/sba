@@ -138,7 +138,7 @@
       border-radius: 4px;
       transition: all 0.3s ease;
       box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
-     float:right;
+      float: right;
     }
 
     .btn:hover {
@@ -146,7 +146,6 @@
       color: #000;
       box-shadow: 0 0 25px var(--accent-glow);
       transform: translateY(-2px);
-  
     }
 
     /* --- Section Titles --- */
@@ -219,49 +218,6 @@
       text-decoration: underline;
     }
 
-    /* --- Contact Form --- */
-    .contact-container {
-      max-width: 600px;
-      width: 100%;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      padding: 2.5rem;
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 0.5rem;
-      color: var(--text-muted);
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.8rem;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--card-border);
-      border-radius: 4px;
-      color: #fff;
-      font-size: 1rem;
-      transition: border-color 0.3s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--accent-color);
-      box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
-    }
-
     /* --- Responsive Design --- */
     @media (max-width: 768px) {
       header {
@@ -281,7 +237,6 @@
         font-size: 0.8rem;
       }
     }
-    
   </style>
 </head>
 
@@ -309,8 +264,6 @@
 
   <section id="projects">
     <h2 class="section-title">MosesHang's Project</h2>
-
-    
 
     <div class="projects-grid">
       <div class="project-card">
@@ -340,12 +293,9 @@
         </p>
         <a href="projects.html" class="project-link">View Terminal &rarr;</a>
       </div>
-
-     
     </div>
     
      <!-- More 按鈕導向 projects.html -->
-     
      <div style="margin-bottom: 2rem;">
       <br>
       <a href="projects.html" class="btn">More &rarr;</a>
@@ -356,32 +306,38 @@
     <h2 class="section-title">Self-introduction</h2>
     <div class="projects-grid">
       <div class="project-card">
-        <h3>Hi,my name is Moses Hang </h3>
+        <h3>Hi, my name is Moses Hang</h3>
         <p></p>
       </div>
     </div>
   </section>
 
+  <!-- 修改後的 Contact 區塊 -->
   <section id="contact">
     <h2 class="section-title">Establish Downlink</h2>
-    <div class="contact-container">
-      <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Transmission Received.');">
-        <div class="form-group">
-          <label for="name">Identifier (Name)</label>
-          <input type="text" id="name" required autocomplete="off" />
-        </div>
-        <div class="form-group">
-          <label for="email">Frequency (Email)</label>
-          <input type="email" id="email" required autocomplete="off" />
-        </div>
-        <div class="form-group">
-          <label for="message">Transmission (Message)</label>
-          <textarea id="message" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn" style="width: 100%; cursor: pointer">
-          Send Signal
-        </button>
-      </form>
+    <div class="projects-grid">
+      <!-- YouTube 連結 -->
+      <div class="project-card" style="text-align: center;">
+        <h3>YouTube</h3>
+        <p>Subscribe and watch the latest videos on my channel.</p>
+        <a href="https://youtube.com/@mj_games_studio?si=mLLsxKgXWOuLf-dX/" target="_blank" rel="noopener noreferrer" class="btn" style="float: none; display: inline-block;">Go to YouTube &rarr;</a>
+      </div>
+
+      <!-- Gmail 聯絡 -->
+      <div class="project-card" style="text-align: center;">
+        <h3>Gmail</h3>
+        <p>Send me an email directly via Mail client.
+          gmail: mj.games.studio.rblx@gmail.com
+        </p>
+        <a href="mailto:your-email@gmail.com" class="btn" style="float: none; display: inline-block;">Send Email &rarr;</a>
+      </div>
+
+      <!-- Discord 連結 -->
+      <div class="project-card" style="text-align: center;">
+        <h3>Discord</h3>
+        <p>Join the community or connect with me on Discord.</p>
+        <a href="https://discord.gg/ckDRAcKBU/" target="_blank" rel="noopener noreferrer" class="btn" style="float: none; display: inline-block;">Join Discord &rarr;</a>
+      </div>
     </div>
   </section>
 
