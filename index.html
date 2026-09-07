@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SpaceTech Portfolio</title>
+  <title>MosesHang - SpaceTech Portfolio</title>
   <style>
     /* --- Reset & Core Styles --- */
     * {
@@ -19,7 +19,6 @@
       --text-color: #ffffff;
       --text-muted: #8a99ad;
       --accent-color: #00f2fe;
-      /* Starlink Electric Blue */
       --accent-glow: rgba(0, 242, 254, 0.4);
       --card-bg: rgba(255, 255, 255, 0.03);
       --card-border: rgba(255, 255, 255, 0.08);
@@ -54,9 +53,7 @@
       justify-content: space-between;
       align-items: center;
       z-index: 100;
-      background: linear-gradient(to bottom,
-          rgba(3, 3, 12, 0.8),
-          transparent);
+      background: linear-gradient(to bottom, rgba(3, 3, 12, 0.8), transparent);
       backdrop-filter: blur(5px);
     }
 
@@ -74,6 +71,11 @@
       text-shadow: 0 0 10px var(--accent-glow);
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
     nav a {
       color: var(--text-muted);
       text-decoration: none;
@@ -88,6 +90,25 @@
       text-shadow: 0 0 8px var(--accent-glow);
     }
 
+    .lang-btn {
+      margin-left: 2rem;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--accent-color);
+      background: rgba(0, 242, 254, 0.1);
+      color: var(--accent-color);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .lang-btn:hover {
+      background: var(--accent-color);
+      color: #03030c;
+    }
+
     /* --- Layout Sections --- */
     section {
       min-height: 100vh;
@@ -97,7 +118,6 @@
       justify-content: center;
     }
 
-    /* --- Hero Section --- */
     .hero {
       align-items: flex-start;
     }
@@ -138,7 +158,6 @@
       border-radius: 4px;
       transition: all 0.3s ease;
       box-shadow: 0 0 15px rgba(0, 242, 254, 0.1);
-      float: right;
     }
 
     .btn:hover {
@@ -148,7 +167,6 @@
       transform: translateY(-2px);
     }
 
-    /* --- Section Titles --- */
     .section-title {
       font-size: 2rem;
       text-transform: uppercase;
@@ -169,7 +187,6 @@
       box-shadow: 0 0 8px var(--accent-glow);
     }
 
-    /* --- Projects Grid --- */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -218,24 +235,11 @@
       text-decoration: underline;
     }
 
-    /* --- Responsive Design --- */
     @media (max-width: 768px) {
-      header {
-        padding: 1.5rem 5%;
-      }
-
-      section {
-        padding: 6rem 5% 3rem 5%;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      nav a {
-        margin-left: 1rem;
-        font-size: 0.8rem;
-      }
+      header { padding: 1.5rem 5%; }
+      section { padding: 6rem 5% 3rem 5%; }
+      .hero h1 { font-size: 2.5rem; }
+      nav a { margin-left: 1rem; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -244,108 +248,88 @@
   <canvas id="starlink-canvas"></canvas>
 
   <header>
-    <a href="#" class="logo">Moses<span>Hang</span></a>
+    <a href="index.html" class="logo">Moses<span>Hang</span></a>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a href="index.html" class="lang-text" data-key="navHome">Home</a>
+      <a href="#projects" class="lang-text" data-key="navProjects">Projects</a>
+      <a href="#about" class="lang-text" data-key="navAbout">About</a>
+      <a href="#contact" class="lang-text" data-key="navContact">Contact</a>
+      <button id="lang-btn" class="lang-btn">中/Eng</button>
     </nav>
   </header>
 
   <section id="hero" class="hero">
-    <h1>MosesHang's Website.<br /><span>Website Porfolio.</span></h1>
-    <p>
-      Congratulations on successfully creating this website out of sheer boredom! This webpage was created to showcase
-      my work, so feel free to browse if you're interested.
+    <h1 class="lang-text" data-key="heroTitle">MosesHang's Website.<br /><span>Website Portfolio.</span></h1>
+    <p class="lang-text" data-key="heroDesc">
+      Congratulations on successfully creating this website out of sheer boredom! This webpage was created to showcase my work, so feel free to browse if you're interested.
     </p>
-    <a href="#projects" class="btn">Explore Orbit</a>
+    <a href="#projects" class="btn lang-text" data-key="heroBtn">Explore Orbit</a>
   </section>
 
   <section id="projects">
-    <h2 class="section-title">MosesHang's Project</h2>
+    <h2 class="section-title lang-text" data-key="projectsTitle">MosesHang's Projects</h2>
 
     <div class="projects-grid">
       <div class="project-card">
         <h3>Ninja Jump Jump Jump</h3>
-        <p>
-          2024/04/29 #Roblox
-          <br><br>
-          2D side-scrolling running game.
-        </p>
-        <a href="projects.html" class="project-link">View Terminal &rarr;</a>
+        <p><span class="lang-text" data-key="p1Tag">2024/04/29 #Roblox</span><br><br><span class="lang-text" data-key="p1Desc">2D side-scrolling running game.</span></p>
+        <a href="projects.html" class="project-link lang-text" data-key="viewTerminal">View Terminal &rarr;</a>
       </div>
       <div class="project-card">
-        <h3>Cursed blue-face car crash painting</h3>
-        <p>
-          2023/11/21 #Drawing
-          <br><br>
-          A work composed of various elements from different magazines.
-        </p>
-        <a href="projects.html" class="project-link">View Terminal &rarr;</a>
+        <h3 class="lang-text" data-key="p2Title">Cursed blue-face car crash painting</h3>
+        <p><span class="lang-text" data-key="p2Tag">2023/11/21 #Drawing</span><br><br><span class="lang-text" data-key="p2Desc">A work composed of various elements from different magazines.</span></p>
+        <a href="projects.html" class="project-link lang-text" data-key="viewTerminal">View Terminal &rarr;</a>
       </div>
       <div class="project-card">
         <h3>Kennedy Town🚶‍♂️‍➡️island Resort</h3>
-        <p>
-          2026/08/07 #Walking
-          <br><br>
-          Challenge yourself by walking through Hong Kong.
-        </p>
-        <a href="projects.html" class="project-link">View Terminal &rarr;</a>
+        <p><span class="lang-text" data-key="p3Tag">2026/08/07 #Walking</span><br><br><span class="lang-text" data-key="p3Desc">Challenge yourself by walking through Hong Kong.</span></p>
+        <a href="projects.html" class="project-link lang-text" data-key="viewTerminal">View Terminal &rarr;</a>
       </div>
     </div>
     
-     <!-- More 按鈕導向 projects.html -->
-     <div style="margin-bottom: 2rem;">
-      <br>
-      <a href="projects.html" class="btn">More &rarr;</a>
+    <div style="margin-top: 2rem;">
+      <a href="projects.html" class="btn lang-text" data-key="moreBtn" style="float: right;">More &rarr;</a>
     </div>
   </section>
 
   <section id="about">
-    <h2 class="section-title">Self-introduction</h2>
+    <h2 class="section-title lang-text" data-key="aboutTitle">Self-introduction</h2>
     <div class="projects-grid">
       <div class="project-card">
-        <h3>Hi, my name is Moses Hang,i am hksc student, i will make game,play game,football and basketball</h3>
-        <p></p>
+        <h3 class="lang-text" data-key="aboutDesc">Hi, my name is Moses Hang, I am a HKSC student. I make games, play games, play football, and basketball.</h3>
       </div>
     </div>
   </section>
 
-  <!-- 修改後的 Contact 區塊 -->
   <section id="contact">
-    <h2 class="section-title">Establish Downlink</h2>
+    <h2 class="section-title lang-text" data-key="contactTitle">Establish Downlink</h2>
     <div class="projects-grid">
-      <!-- YouTube 連結 -->
       <div class="project-card" style="text-align: center;">
         <h3>YouTube</h3>
-        <p>Subscribe and watch the latest videos on my channel.</p>
-        <a href="https://youtube.com/@mj_games_studio?si=mLLsxKgXWOuLf-dX/" target="_blank" rel="noopener noreferrer" class="btn" style="float: none; display: inline-block;">Go to YouTube &rarr;</a>
+        <p class="lang-text" data-key="ytDesc">Subscribe and watch the latest videos on my channel.</p>
+        <a href="https://youtube.com/@mj_games_studio?si=mLLsxKgXWOuLf-dX/" target="_blank" rel="noopener noreferrer" class="btn lang-text" data-key="ytBtn" style="display: inline-block;">Go to YouTube &rarr;</a>
       </div>
 
-      <!-- Gmail 聯絡 -->
       <div class="project-card" style="text-align: center;">
         <h3>Gmail</h3>
-        <p>Send me an email directly via Mail client.
-          gmail: mj.games.studio.rblx@gmail.com
-        </p>
-        <a href="mailto:your-email@gmail.com" class="btn" style="float: none; display: inline-block;">Send Email &rarr;</a>
+        <p class="lang-text" data-key="mailDesc">Send me an email directly via Mail client.<br>gmail: mj.games.studio.rblx@gmail.com</p>
+        <a href="mailto:mj.games.studio.rblx@gmail.com" class="btn lang-text" data-key="mailBtn" style="display: inline-block;">Send Email &rarr;</a>
       </div>
 
-      <!-- Discord 連結 -->
       <div class="project-card" style="text-align: center;">
         <h3>Discord</h3>
-        <p>Join the community or connect with me on Discord.</p>
-        <a href="https://discord.gg/ckDRAcKBU/" target="_blank" rel="noopener noreferrer" class="btn" style="float: none; display: inline-block;">Join Discord &rarr;</a>
+        <p class="lang-text" data-key="dcDesc">Join the community or connect with me on Discord.</p>
+        <a href="https://discord.gg/ckDRAcKBU/" target="_blank" rel="noopener noreferrer" class="btn lang-text" data-key="dcBtn" style="display: inline-block;">Join Discord &rarr;</a>
       </div>
     </div>
   </section>
 
   <script>
+    /* --- Starlink Background --- */
     const canvas = document.getElementById('starlink-canvas');
     const ctx = canvas.getContext('2d');
-
     let resizeTimeout;
+
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -373,7 +357,6 @@
       update() {
         this.x += this.vx;
         this.y += this.vy;
-
         if (this.x < 0) this.x = canvas.width;
         if (this.x > canvas.width) this.x = 0;
         if (this.y < 0) this.y = canvas.height;
@@ -388,17 +371,11 @@
       }
     }
 
-    for (let i = 0; i < numStars; i++) {
-      stars.push(new Star());
-    }
+    for (let i = 0; i < numStars; i++) stars.push(new Star());
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      stars.forEach((star) => {
-        star.update();
-        star.draw();
-      });
+      stars.forEach(star => { star.update(); star.draw(); });
 
       for (let i = 0; i < stars.length; i++) {
         for (let j = i + 1; j < stars.length; j++) {
@@ -417,11 +394,93 @@
           }
         }
       }
-
       requestAnimationFrame(animate);
     }
-
     animate();
+
+    /* --- Language Switching Logic --- */
+    const translations = {
+      en: {
+        langBtn: "中/Eng",
+        navHome: "Home",
+        navProjects: "Projects",
+        navAbout: "About",
+        navContact: "Contact",
+        heroTitle: "MosesHang's Website.<br /><span>Website Portfolio.</span>",
+        heroDesc: "Congratulations on successfully creating this website out of sheer boredom! This webpage was created to showcase my work, so feel free to browse if you're interested.",
+        heroBtn: "Explore Orbit",
+        projectsTitle: "MosesHang's Projects",
+        p1Tag: "2024/04/29 #Roblox",
+        p1Desc: "2D side-scrolling running game.",
+        p2Title: "Cursed blue-face car crash painting",
+        p2Tag: "2023/11/21 #Drawing",
+        p2Desc: "A work composed of various elements from different magazines.",
+        p3Tag: "2026/08/07 #Walking",
+        p3Desc: "Challenge yourself by walking through Hong Kong.",
+        viewTerminal: "View Terminal &rarr;",
+        moreBtn: "More &rarr;",
+        aboutTitle: "Self-introduction",
+        aboutDesc: "Hi, my name is Moses Hang, I am a HKSC student. I make games, play games, play football, and basketball.",
+        contactTitle: "Establish Downlink",
+        ytDesc: "Subscribe and watch the latest videos on my channel.",
+        ytBtn: "Go to YouTube &rarr;",
+        mailDesc: "Send me an email directly via Mail client.<br>gmail: mj.games.studio.rblx@gmail.com",
+        mailBtn: "Send Email &rarr;",
+        dcDesc: "Join the community or connect with me on Discord.",
+        dcBtn: "Join Discord &rarr;"
+      },
+      zh: {
+        langBtn: "Eng/中",
+        navHome: "主頁",
+        navProjects: "專案作品",
+        navAbout: "關於我",
+        navContact: "聯絡方式",
+        heroTitle: "MosesHang 的個人網站。<br /><span>作品集展示。</span>",
+        heroDesc: "恭喜你！這是我因為無聊而成功建立的網站！設立這個網頁是為了展示我的作品，有興趣的話歡迎隨意瀏覽。",
+        heroBtn: "探索軌道",
+        projectsTitle: "MosesHang 的專案作品",
+        p1Tag: "2024/04/29 #Roblox",
+        p1Desc: "2D 橫向捲軸跑步遊戲。",
+        p2Title: "被詛咒的藍面車禍畫作",
+        p2Tag: "2023/11/21 #繪畫",
+        p2Desc: "由不同雜誌中的各種元素組合而成的作品。",
+        p3Tag: "2026/08/07 #徒步",
+        p3Desc: "挑戰徒步穿越香港。",
+        viewTerminal: "檢視詳情 &rarr;",
+        moreBtn: "查看更多 &rarr;",
+        aboutTitle: "自我介紹",
+        aboutDesc: "你好，我叫 Moses Hang，我是香港兆基創意書院的學生。我會製作遊戲、玩遊戲、踢足球和打籃球。",
+        contactTitle: "建立連線",
+        ytDesc: "訂閱並觀看我頻道的最新影片。",
+        ytBtn: "前往 YouTube &rarr;",
+        mailDesc: "透過郵件客戶端直接傳送電郵給我。<br>電郵：mj.games.studio.rblx@gmail.com",
+        mailBtn: "傳送電郵 &rarr;",
+        dcDesc: "加入社群或在 Discord 上與我聯絡。",
+        dcBtn: "加入 Discord &rarr;"
+      }
+    };
+
+    let currentLang = localStorage.getItem('site_lang') || 'en';
+
+    function updateLanguage() {
+      const langData = translations[currentLang];
+      document.getElementById('lang-btn').innerText = langData.langBtn;
+
+      document.querySelectorAll('.lang-text').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (langData[key]) {
+          el.innerHTML = langData[key];
+        }
+      });
+    }
+
+    document.getElementById('lang-btn').addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      localStorage.setItem('site_lang', currentLang);
+      updateLanguage();
+    });
+
+    updateLanguage();
   </script>
 </body>
 

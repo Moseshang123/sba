@@ -69,6 +69,11 @@
       text-shadow: 0 0 10px var(--accent-glow);
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
     nav a {
       color: var(--text-muted);
       text-decoration: none;
@@ -82,6 +87,25 @@
     nav a[aria-current='page'] {
       color: var(--accent-color);
       text-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .lang-btn {
+      margin-left: 2rem;
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--accent-color);
+      background: rgba(0, 242, 254, 0.1);
+      color: var(--accent-color);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .lang-btn:hover {
+      background: var(--accent-color);
+      color: #03030c;
     }
 
     section {
@@ -373,26 +397,26 @@
   <header>
     <a href="index.html" class="logo">Moses<span>Hang</span></a>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="projects.html" aria-current="page">Projects</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="index.html" class="lang-text" data-key="navHome">Home</a>
+      <a href="projects.html" aria-current="page" class="lang-text" data-key="navProjects">Projects</a>
+      <a href="index.html#about" class="lang-text" data-key="navAbout">About</a>
+      <a href="index.html#contact" class="lang-text" data-key="navContact">Contact</a>
+      <button id="lang-btn" class="lang-btn">中/Eng</button>
     </nav>
   </header>
 
   <main>
     <section id="projects">
-      <h2 class="section-title">MosesHang's Projects</h2>
+      <h2 class="section-title lang-text" data-key="projectsTitle">MosesHang's Projects</h2>
 
       <div class="filter-container">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="game">Game</button>
-        <button class="filter-btn" data-filter="art">Art</button>
-        <button class="filter-btn" data-filter="challenge">Challenge</button>
-        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn active lang-text" data-filter="all" data-key="filterAll">All</button>
+        <button class="filter-btn lang-text" data-filter="game" data-key="filterGame">Game</button>
+        <button class="filter-btn lang-text" data-filter="art" data-key="filterArt">Art</button>
+        <button class="filter-btn lang-text" data-filter="challenge" data-key="filterChallenge">Challenge</button>
+        <button class="filter-btn lang-text" data-filter="web" data-key="filterWeb">Web</button>
       </div>
 
-      <!-- 動態載入專案容器 -->
       <div class="projects-grid" id="projects-grid"></div>
     </section>
   </main>
@@ -409,136 +433,278 @@
           <p id="modal-desc">Project Description...</p>
         </div>
         <div class="modal-bottom-link">
-          <a id="modal-link" href="#" target="_blank" class="modal-btn">Visit Project &rarr;</a>
+          <a id="modal-link" href="#" target="_blank" class="modal-btn lang-text" data-key="visitProject">Visit Project &rarr;</a>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    /* --- 1. 專案資料集 (將所有重複的卡片集中統一管理) --- */
+    /* --- Multi-language Data --- */
+    const translations = {
+      en: {
+        langBtn: "中/Eng",
+        navHome: "Home",
+        navProjects: "Projects",
+        navAbout: "About",
+        navContact: "Contact",
+        projectsTitle: "MosesHang's Projects",
+        filterAll: "All",
+        filterGame: "Game",
+        filterArt: "Art",
+        filterChallenge: "Challenge",
+        filterWeb: "Web",
+        viewTerminal: "View Terminal &rarr;",
+        visitProject: "Visit Project &rarr;"
+      },
+      zh: {
+        langBtn: "Eng/中",
+        navHome: "主頁",
+        navProjects: "專案作品",
+        navAbout: "關於我",
+        navContact: "聯絡方式",
+        projectsTitle: "MosesHang 的專案作品",
+        filterAll: "全部",
+        filterGame: "遊戲",
+        filterArt: "藝術",
+        filterChallenge: "挑戰",
+        filterWeb: "網頁",
+        viewTerminal: "檢視詳情 &rarr;",
+        visitProject: "造訪專案 &rarr;"
+      }
+    };
+
+    /* --- Project Data (Bilingual) --- */
     const projectsData = [
       {
         category: 'game',
-        title: 'Ninja Jump Jump Jump',
-        subtitle: '2D side-scrolling running game.',
+        title: { en: 'Ninja Jump Jump Jump', zh: 'Ninja Jump Jump Jump' },
+        subtitle: { en: '2D side-scrolling running game.', zh: '2D 橫向捲軸跑步遊戲。' },
         img: '/image/ninja jump.jpg',
         url: 'https://www.roblox.com/games/17327498297/Ninja-Jump-Jump-Jump',
-        description: '2024/04/29 #Roblox<br /><br />This is a 2D reaction-based game where you play as a ninja who is constantly running forward. You need to dodge traps, lasers, zombies, and other obstacles. The game has no end and is designed for you to play and relax.'
+        description: {
+          en: '2024/04/29 #Roblox<br /><br />This is a 2D reaction-based game where you play as a ninja who is constantly running forward. You need to dodge traps, lasers, zombies, and other obstacles. The game has no end and is designed for you to play and relax.',
+          zh: '2024/04/29 #Roblox<br /><br />這是一款考驗反應能力的 2D 遊戲，你將扮演一位不斷向前奔跑的忍者，需要躲避陷阱、雷射、殭屍等障礙物。遊戲沒有盡頭，適合放鬆遊玩。'
+        }
       },
       {
         category: 'game',
-        title: 'Find the button',
-        subtitle: 'My first attempt at using code in a game.',
+        title: { en: 'Find the button', zh: 'Find the button (尋找按鈕)' },
+        subtitle: { en: 'My first attempt at using code in a game.', zh: '我第一次嘗試在遊戲中使用程式碼。' },
         img: '/image/findbutton.jpg',
         url: 'https://www.roblox.com/games/113089498204682/find-the-button',
-        description: '2025/04/28 #Roblox<br /><br />This is a game that tests your keen eye and powers of observation. You must use your sharp eyes to locate the button that leads to the next level, but be careful to avoid the trap buttons that send you back to the start.'
+        description: {
+          en: '2025/04/28 #Roblox<br /><br />This is a game that tests your keen eye and powers of observation. You must use your sharp eyes to locate the button that leads to the next level, but be careful to avoid the trap buttons that send you back to the start.',
+          zh: '2025/04/28 #Roblox<br /><br />這是一款測試觀察力的遊戲。你必須運用敏銳的眼力找出前往下一關的按鈕，但要小心避開會將你送回起點的陷阱按鈕。'
+        }
       },
       {
         category: 'game',
-        title: 'Toliet obby',
-        subtitle: 'My first game',
+        title: { en: 'Toliet obby', zh: 'Toilet Obby (廁所跑酷)' },
+        subtitle: { en: 'My first game', zh: '我的第一款遊戲' },
         img: '/image/toliet obby.jpg',
         url: 'https://www.roblox.com/games/14682074026/Toilet-Obby',
-        description: '2023/09/04 #Roblox<br /><br />Toilet obby is called toilet parkour. It is basically the same as other parkour games. However, toilet obby has a special feature. It does not get harder as you go. It is simple and difficult and simple and difficult. So it is a very special and strange parkour game. I hope you have fun and enjoy Toilet obby.'
+        description: {
+          en: '2023/09/04 #Roblox<br /><br />Toilet obby is called toilet parkour. It is basically the same as other parkour games. However, toilet obby has a special feature. It does not get harder as you go. It is simple and difficult and simple and difficult. So it is a very special and strange parkour game. I hope you have fun and enjoy Toilet obby.',
+          zh: '2023/09/04 #Roblox<br /><br />Toilet Obby 是一款風格獨特的跑酷遊戲。難度不會隨關卡遞增，而是簡單與困難交替出現，帶來非常特別的遊戲體驗。'
+        }
       },
       {
         category: 'game',
-        title: 'Eternal Runner',
-        subtitle: '3D stereo third person rear end collision perspective.',
+        title: { en: 'Eternal Runner', zh: 'Eternal Runner' },
+        subtitle: { en: '3D stereo third person rear end collision perspective.', zh: '3D 立體第三人稱追尾視角跑步遊戲。' },
         img: '/image/Eternal Runner.jpg',
         url: 'https://www.roblox.com/games/91712186081698/Eternal-Runner',
-        description: '2025/09/14 #Roblox<br /><br />Eternal Runner is a fast-paced parkour game where players must navigate their character through obstacles and traps. The challenge intensifies as the speed increases! Put your reflexes to the test and set a new record!'
+        description: {
+          en: '2025/09/14 #Roblox<br /><br />Eternal Runner is a fast-paced parkour game where players must navigate their character through obstacles and traps. The challenge intensifies as the speed increases! Put your reflexes to the test and set a new record!',
+          zh: '2025/09/14 #Roblox<br /><br />Eternal Runner 是一款快節奏的跑酷遊戲，玩家必須操控角色穿過各種障礙物和陷阱。隨著速度越來越快，挑戰也更加刺激！考驗你的反應力並刷新紀錄吧！'
+        }
       },
       {
         category: 'game',
-        title: 'U Need Transcends',
-        subtitle: "use code to make's game teamwork with brian yu.",
+        title: { en: 'U Need Transcends', zh: 'U Need Transcends' },
+        subtitle: { en: "use code to make's game teamwork with brian yu.", zh: '與 Brian Yu 合作使用程式碼製作的遊戲。' },
         img: '/image/uneedtranscends.jpg',
         url: 'https://www.roblox.com/games/128635892484371/Untitled-Experience',
-        description: "2026/04/29 #Roblox<br /><br />This game demands immense mental effort and patience, as it is an [obby] game designed to mess with your head."
+        description: {
+          en: "2026/04/29 #Roblox<br /><br />This game demands immense mental effort and patience, as it is an [obby] game designed to mess with your head.",
+          zh: "2026/04/29 #Roblox<br /><br />這是一款非常考驗心智與耐心的跑酷 (obby) 遊戲，設計宗旨就是挑戰你的心理極限。"
+        }
       },
       {
         category: 'game',
-        title: 'Tsunami! Run!',
-        subtitle: "Aligns with the HKSC 20th anniversary theme: [Swimming Against the Current]",
+        title: { en: 'Tsunami! Run!', zh: 'Tsunami! Run! (海嘯狂奔)' },
+        subtitle: { en: "Aligns with the HKSC 20th anniversary theme: [Swimming Against the Current]", zh: "契合 HKSC 20 週年主題：[逆流而上]" },
         img: '/image/Tsunami.jpg',
         url: 'https://www.roblox.com/games/128478871170904/SGS-MoseHungs-Place-02242026-4',
-        description: "2026/04/30 #Roblox<br /><br />Tsunami! Run! It is a game of avoiding waves. You need to get into the cave before the flood comes over to avoid the flood, challenging the thrill of reaction! "
+        description: {
+          en: "2026/04/30 #Roblox<br /><br />Tsunami! Run! It is a game of avoiding waves. You need to get into the cave before the flood comes over to avoid the flood, challenging the thrill of reaction!",
+          zh: "2026/04/30 #Roblox<br /><br />Tsunami! Run! 是一款躲避海嘯大浪的反應遊戲。你需要在洪水淹沒前快速進入洞穴避難，非常考驗反應速度！"
+        }
       },
       {
         category: 'art',
-        title: 'Cursed blue-face car crash painting',
-        subtitle: 'A work composed of various elements from different magazines.',
+        title: { en: 'Cursed blue-face car crash painting', zh: '被詛咒的藍面車禍畫作' },
+        subtitle: { en: 'A work composed of various elements from different magazines.', zh: '由不同雜誌中的各種元素組合而成的作品。' },
         img: '/image/Cursed blue-face car.jpg',
-        description: '2023/11/21 #Drawing<br /><br />A project created during the third year of junior high school, in which a story was composed by combining photographic elements from various magazines.'
+        url: '#',
+        description: {
+          en: '2023/11/21 #Drawing<br /><br />A project created during the third year of junior high school, in which a story was composed by combining photographic elements from various magazines.',
+          zh: '2023/11/21 #繪畫<br /><br />初中三年級時製作的藝術項目，將多本雜誌中的攝影元素結合拼貼出一個故事。'
+        }
       },
       {
         category: 'art',
-        title: 'Old Summer Palace have summer break',
-        subtitle: 'Work created in history',
+        title: { en: 'Old Summer Palace have summer break', zh: '圓明園放暑假' },
+        subtitle: { en: 'Work created in history', zh: '歷史課創作作品' },
         img: '/image/summer.jpg',
         url: 'https://youtube.com/watch?v=MI0JnWLcRHQ&si=0f1nk-MxmmmO1maD',
-        description: '2024/07/30 #Sandbox<br /><br />petition recommended by our teacher. We chose the "Burning of the Old Summer Palace"—a historical event defined by raging flames—as our project theme and created a corresponding project along with a demonstration video.'
+        description: {
+          en: '2024/07/30 #Sandbox<br /><br />A competition project recommended by our teacher. We chose "The Burning of the Old Summer Palace" as our theme, creating a sandbox project and demonstration video.',
+          zh: '2024/07/30 #沙盒<br /><br />老師推薦參與的比賽項目。我們選擇了「火燒圓明園」作為主題，製作了對應的沙盒作品與演示影片。'
+        }
       },
       {
         category: 'challenge',
-        title: 'Kennedy Town🚶‍♂️‍➡️island Resort',
-        subtitle: 'Challenge yourself by walking through Hong Kong.',
+        title: { en: 'Kennedy Town🚶‍♂️‍➡️island Resort', zh: '堅尼地城🚶‍♂️‍➡️小島度假村' },
+        subtitle: { en: 'Challenge yourself by walking through Hong Kong.', zh: '挑戰徒步穿越香港。' },
         img: '/image/kennedyislandresort.jpg',
         url: 'https://maps.app.goo.gl/hqoyn3pBrFyCW6HEA',
-        description: '2026/08/07 #Walking<br /><br />During the holiday, I applied the "sandbox" skills learned in class to participate in a competition. I chose "The Burning of the Old Summer Palace" as the project theme and created both the project itself and a corresponding demonstration video.'
+        description: {
+          en: '2026/08/07 #Walking<br /><br />During the holiday, I challenged myself to walk through different areas of Hong Kong.',
+          zh: '2026/08/07 #徒步<br /><br />假期期間挑戰自我，徒步穿越香港不同區域。'
+        }
       },
       {
         category: 'web',
-        title: 'Adventurer Form',
-        subtitle: 'My ICT first project.',
+        title: { en: 'Adventurer Form', zh: '冒險者表格 (Adventurer Form)' },
+        subtitle: { en: 'My ICT first project.', zh: '我的第一個 ICT 網頁項目。' },
         img: '/image/adv.jpg',
         url: 'web1.html',
-        description: '2024/12/20 #freecodecamp<br /><br />For the first ICT project, I researched the implementation process independently, consulted the teacher for guidance, and successfully completed the project. i learn html and csss'
+        description: {
+          en: '2024/12/20 #freecodecamp<br /><br />For the first ICT project, I researched the implementation process independently, consulted the teacher for guidance, and successfully learned HTML & CSS.',
+          zh: '2024/12/20 #freecodecamp<br /><br />第一個 ICT 網頁項目，學習並運用 HTML 和 CSS 完成。'
+        }
       },
       {
         category: 'web',
-        title: 'YOASOBI introduce',
-        subtitle: 'Introduce YOASOBI.',
+        title: { en: 'YOASOBI introduce', zh: 'YOASOBI 介紹頁面' },
+        subtitle: { en: 'Introduce YOASOBI.', zh: '介紹日本音樂組合 YOASOBI。' },
         img: '/image/YOA.jpg',
         url: 'web2.html',
-        description: '2025/08/01 #freecodecamp<br /><br />This is my second ICT project, which requires creating an introduction for a specific person; I have chosen the Japanese artist YOASOBI as the subject of my project.'
+        description: {
+          en: '2025/08/01 #freecodecamp<br /><br />This is my second ICT project, creating an introduction page for the Japanese musical duo YOASOBI.',
+          zh: '2025/08/01 #freecodecamp<br /><br />第二個 ICT 項目，為日本音樂組合 YOASOBI 製作個人介紹網頁。'
+        }
       },
       {
         category: 'web',
-        title: 'Pokemon history',
-        subtitle: 'Introduce pokemon history of animation.',
+        title: { en: 'Pokemon history', zh: '寶可夢動畫歷史' },
+        subtitle: { en: 'Introduce pokemon history of animation.', zh: '介紹寶可夢動畫發展歷史。' },
         img: '/image/pkmon.jpg',
         url: 'web3.html',
-        description: '2025/04/30 #freecodecamp<br /><br />This is my third ICT project, and I need to create a historical overview for a subject; I chose a Pokémon I like for the project.'
+        description: {
+          en: '2025/04/30 #freecodecamp<br /><br />This is my third ICT project, showcasing the history of Pokémon animations.',
+          zh: '2025/04/30 #freecodecamp<br /><br />第三個 ICT 項目，介紹精靈寶可夢動畫的歷史演變。'
+        }
       }
     ];
 
-    /* --- 2. 動態渲染卡片 --- */
+    let currentLang = localStorage.getItem('site_lang') || 'en';
     const gridContainer = document.getElementById('projects-grid');
 
     function renderProjects() {
+      const viewText = translations[currentLang].viewTerminal;
       gridContainer.innerHTML = projectsData.map((p, index) => `
         <div class="project-card" data-category="${p.category}" data-index="${index}">
           <div class="flip-card-inner">
             <div class="flip-card-front">
-              <h3>${p.title}</h3>
-              <p>${p.subtitle}</p>
+              <h3>${p.title[currentLang]}</h3>
+              <p>${p.subtitle[currentLang]}</p>
             </div>
             <div class="flip-card-back">
-              <h3>${p.title}</h3>
-              <p>${p.description}</p>
-              <a class="project-link">View Terminal &rarr;</a>
+              <h3>${p.title[currentLang]}</h3>
+              <p>${p.description[currentLang]}</p>
+              <a class="project-link">${viewText}</a>
             </div>
           </div>
         </div>
       `).join('');
     }
 
-    renderProjects();
+    function updateLanguage() {
+      const langData = translations[currentLang];
+      document.getElementById('lang-btn').innerText = langData.langBtn;
 
-    /* --- 3. Starlink 背景動畫 --- */
+      document.querySelectorAll('.lang-text').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if (langData[key]) {
+          el.innerHTML = langData[key];
+        }
+      });
+
+      renderProjects();
+    }
+
+    document.getElementById('lang-btn').addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      localStorage.setItem('site_lang', currentLang);
+      updateLanguage();
+    });
+
+    renderProjects();
+    updateLanguage();
+
+    /* --- Filter Logic --- */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+        document.querySelectorAll('.project-card').forEach((card) => {
+          const category = card.getAttribute('data-category');
+          if (filterValue === 'all' || filterValue === category) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    /* --- Modal Logic --- */
+    const modal = document.getElementById('project-modal');
+    const modalClose = document.getElementById('modal-close');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalLink = document.getElementById('modal-link');
+
+    gridContainer.addEventListener('click', (e) => {
+      const link = e.target.closest('.project-link');
+      if (!link) return;
+
+      e.preventDefault();
+      const card = link.closest('.project-card');
+      const index = card.getAttribute('data-index');
+      const data = projectsData[index];
+
+      modalTitle.innerText = data.title[currentLang];
+      modalDesc.innerHTML = data.description[currentLang];
+      modalImg.src = data.img;
+      modalLink.href = data.url;
+
+      modal.classList.add('active');
+    });
+
+    modalClose.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    /* --- Canvas Animation --- */
     const canvas = document.getElementById('starlink-canvas');
     const ctx = canvas.getContext('2d');
     let resizeTimeout;
@@ -610,55 +776,6 @@
       requestAnimationFrame(animate);
     }
     animate();
-
-    /* --- 4. 分類篩選邏輯 --- */
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filterValue = btn.getAttribute('data-filter');
-        document.querySelectorAll('.project-card').forEach((card) => {
-          const category = card.getAttribute('data-category');
-          if (filterValue === 'all' || filterValue === category) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        });
-      });
-    });
-
-    /* --- 5. Modal 彈出視窗邏輯 --- */
-    const modal = document.getElementById('project-modal');
-    const modalClose = document.getElementById('modal-close');
-    const modalImg = document.getElementById('modal-img');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDesc = document.getElementById('modal-desc');
-    const modalLink = document.getElementById('modal-link');
-
-    gridContainer.addEventListener('click', (e) => {
-      const link = e.target.closest('.project-link');
-      if (!link) return;
-
-      e.preventDefault();
-      const card = link.closest('.project-card');
-      const index = card.getAttribute('data-index');
-      const data = projectsData[index];
-
-      modalTitle.innerText = data.title;
-      modalDesc.innerHTML = data.description;
-      modalImg.src = data.img;
-      modalLink.href = data.url;
-
-      modal.classList.add('active');
-    });
-
-    modalClose.addEventListener('click', () => modal.classList.remove('active'));
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) modal.classList.remove('active');
-    });
   </script>
 </body>
 
