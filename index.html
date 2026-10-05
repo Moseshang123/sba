@@ -198,15 +198,44 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 8px;
-      padding: 2rem;
+      padding: 0;
+      overflow: hidden;
       backdrop-filter: blur(10px);
       transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
     }
 
     .project-card:hover {
       transform: translateY(-5px);
       border-color: var(--accent-color);
       box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
+    }
+
+    /* 新增的圖片容器與樣式 */
+    .project-img-wrapper {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover .project-img-wrapper img {
+      transform: scale(1.08);
+    }
+
+    .project-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
 
     .project-card h3 {
@@ -229,6 +258,7 @@
       font-weight: 600;
       display: inline-flex;
       align-items: center;
+      margin-top: auto;
     }
 
     .project-link:hover {
@@ -270,20 +300,40 @@
     <h2 class="section-title lang-text" data-key="projectsTitle">MosesHang's Projects</h2>
 
     <div class="projects-grid">
+      <!-- 作品 1 -->
       <div class="project-card">
-        <h3>Ninja Jump Jump Jump</h3>
-        <p><span class="lang-text" data-key="p1Tag">2024/04/29 #Roblox</span><br><br><span class="lang-text" data-key="p1Desc">2D side-scrolling running game.</span></p>
-        <a href="projects.html" class="project-link lang-text" data-key="viewTerminal">View Terminal &rarr;</a>
+        <div class="project-img-wrapper">
+          <img src="/image/ninja jump.jpg" alt="Ninja Jump Jump Jump">
+        </div>
+        <div class="project-content">
+          <h3>Ninja Jump Jump Jump</h3>
+          <p><span class="lang-text" data-key="p1Tag">2024/04/29 #Roblox</span><br><br><span class="lang-text" data-key="p1Desc">2D side-scrolling running game.</span></p>
+          <a href="projects.html" class="project-link lang-text" data-key="viewTerminal">View Terminal &rarr;</a>
+        </div>
       </div>
+
+      <!-- 作品 2 -->
       <div class="project-card">
-        <h3 class="lang-text" data-key="p2Title">Cursed blue-face car crash painting</h3>
-        <p><span class="lang-text" data-key="p2Tag">2023/11/21 #Drawing</span><br><br><span class="lang-text" data-key="p2Desc">A work composed of various elements from different magazines.</span></p>
-        <a href="projects.html" class="project-link lang-text" data-key="viewTerminal">View Terminal &rarr;</a>
+        <div class="project-img-wrapper">
+          <img src="/image/Cursed blue-face car.jpg" alt="Cursed blue-face car crash painting">
+        </div>
+        <div class="project-content">
+          <h3 class="lang-text" data-key="p2Title">Cursed blue-face car crash painting</h3>
+          <p><span class="lang-text" data-key="p2Tag">2023/11/21 #Drawing</span><br><br><span class="lang-text" data-key="p2Desc">A work composed of various elements from different magazines.</span></p>
+          <a href="projects.html" class="project-link lang-text" data-key="viewTerminal">View Terminal &rarr;</a>
+        </div>
       </div>
+
+      <!-- 作品 3 -->
       <div class="project-card">
-        <h3>Kennedy Town🚶‍♂️‍➡️island Resort</h3>
-        <p><span class="lang-text" data-key="p3Tag">2026/08/07 #Walking</span><br><br><span class="lang-text" data-key="p3Desc">Challenge yourself by walking through Hong Kong.</span></p>
-        <a href="projects.html" class="project-link lang-text" data-key="viewTerminal">View Terminal &rarr;</a>
+        <div class="project-img-wrapper">
+          <img src="/image/kennedyislandresort.jpg" alt="Kennedy Town island Resort">
+        </div>
+        <div class="project-content">
+          <h3>Kennedy Town🚶‍♂️‍➡️island Resort</h3>
+          <p><span class="lang-text" data-key="p3Tag">2026/08/07 #Walking</span><br><br><span class="lang-text" data-key="p3Desc">Challenge yourself by walking through Hong Kong.</span></p>
+          <a href="projects.html" class="project-link lang-text" data-key="viewTerminal">View Terminal &rarr;</a>
+        </div>
       </div>
     </div>
     
@@ -295,7 +345,7 @@
   <section id="about">
     <h2 class="section-title lang-text" data-key="aboutTitle">Self-introduction</h2>
     <div class="projects-grid">
-      <div class="project-card">
+      <div class="project-card" style="padding: 2rem;">
         <h3 class="lang-text" data-key="aboutDesc">Hi, my name is Moses Hang, I am a HKSC student. I make games, play games, play football, and basketball.</h3>
       </div>
     </div>
@@ -304,19 +354,19 @@
   <section id="contact">
     <h2 class="section-title lang-text" data-key="contactTitle">Establish Downlink</h2>
     <div class="projects-grid">
-      <div class="project-card" style="text-align: center;">
+      <div class="project-card" style="padding: 2rem; text-align: center;">
         <h3>YouTube</h3>
         <p class="lang-text" data-key="ytDesc">Subscribe and watch the latest videos on my channel.</p>
         <a href="https://youtube.com/@mj_games_studio?si=mLLsxKgXWOuLf-dX/" target="_blank" rel="noopener noreferrer" class="btn lang-text" data-key="ytBtn" style="display: inline-block;">Go to YouTube &rarr;</a>
       </div>
 
-      <div class="project-card" style="text-align: center;">
+      <div class="project-card" style="padding: 2rem; text-align: center;">
         <h3>Gmail</h3>
         <p class="lang-text" data-key="mailDesc">Send me an email directly via Mail client.<br>gmail: mj.games.studio.rblx@gmail.com</p>
         <a href="mailto:mj.games.studio.rblx@gmail.com" class="btn lang-text" data-key="mailBtn" style="display: inline-block;">Send Email &rarr;</a>
       </div>
 
-      <div class="project-card" style="text-align: center;">
+      <div class="project-card" style="padding: 2rem; text-align: center;">
         <h3>Discord</h3>
         <p class="lang-text" data-key="dcDesc">Join the community or connect with me on Discord.</p>
         <a href="https://discord.gg/ckDRAcKBU/" target="_blank" rel="noopener noreferrer" class="btn lang-text" data-key="dcBtn" style="display: inline-block;">Join Discord &rarr;</a>
