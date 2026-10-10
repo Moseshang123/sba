@@ -346,6 +346,43 @@
         text-align: center;
       }
     }
+
+    /* --- 新增：流星文字特效 (Shooting Text) --- */
+    #shooting-text-container {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      overflow: hidden;
+      margin: 2rem 0;
+      pointer-events: none;
+    }
+
+    .shooting-text {
+      position: absolute;
+      white-space: nowrap;
+      color: var(--accent-color);
+      font-weight: 600;
+      text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
+      opacity: 0;
+      animation: fly-across 5s linear forwards;
+    }
+
+    @keyframes fly-across {
+      0% {
+        left: 100vw;
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        left: -50%;
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 
@@ -431,6 +468,9 @@
       </div>
     </div>
   </section>
+
+  <!-- === 新增：流星文字特效容器 === -->
+  <div id="shooting-text-container"></div>
 
   <section id="contact">
     <h2 class="section-title lang-text" data-key="contactTitle">Establish Downlink</h2>
@@ -636,6 +676,68 @@
     });
 
     updateLanguage();
+
+    /* --- 新增：雙語流星文字特效邏輯 --- */
+    const textContainer = document.getElementById('shooting-text-container');
+    
+    // 英文版隨機文字
+    const shootingPhrasesEn = [
+      "Why do we think?",
+      "Have our lives already been reincarnated once before?",
+      "Are we living our lives according to a predetermined script?",
+      "Why is the world ruled by humans instead of animals?",
+      "Is history true, or is it just a perpetuated lie?",
+      "Did dinosaurs truly exist on Earth, or were they simply imagined by someone?",
+      "Why does the world have so many languages instead of a single, unified one?",
+      "Why must every single word in a poem hold a deeper meaning?",
+      "Is Earth the only planet in the entire universe inhabited by life, while others are empty?",
+      "Why is it acceptable for humans to eat animal meat?"
+    ];
+
+    // 中文版隨機文字
+    const shootingPhrasesZh = [
+      "點解我哋會思考?",
+      "我們的人生是不是已經輪迴過一次?",
+      "我們的人生是不是已經有一個固定的劇本已生活?",
+      "為什麼這個世界，是由人類統治而不是動物?",
+      "歷史是否是真的，還是其實是某一個謊言讓它繼續流傳?",
+      "地球上曾經真是有恐龍嗎，還是其實是一個人曾經幻想出來?",
+      "世界為什麼有這麼多語言而不統一用一樣語言?",
+      "為什麼詩句的每一粒字背後一定有意思?",
+      "整個宇宙是不是只有地球有人生活, 而其他星球上就沒有？",
+      "為什麼人類可以食動物肉?"
+    ];
+
+    function createShootingText() {
+      if (!textContainer) return;
+      
+      const textEl = document.createElement('div');
+      textEl.classList.add('shooting-text');
+      
+      // 根據當前的語言，選擇對應的文字陣列
+      const currentPhrases = currentLang === 'en' ? shootingPhrasesEn : shootingPhrasesZh;
+      
+      // 從選擇的陣列中隨機抽取一句話
+      const randomText = currentPhrases[Math.floor(Math.random() * currentPhrases.length)];
+      textEl.innerText = randomText;
+      
+      const randomTop = Math.floor(Math.random() * 80);
+      textEl.style.top = `${randomTop}%`;
+      
+      const randomSize = (Math.random() * 0.8 + 0.8).toFixed(1); 
+      textEl.style.fontSize = `${randomSize}rem`;
+
+      const randomDuration = (Math.random() * 3 + 4).toFixed(1);
+      textEl.style.animationDuration = `${randomDuration}s`;
+
+      textContainer.appendChild(textEl);
+
+      setTimeout(() => {
+        textEl.remove();
+      }, randomDuration * 1000);
+    }
+
+    setInterval(createShootingText, 2000);
   </script>
 </body>
 
